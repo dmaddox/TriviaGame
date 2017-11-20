@@ -1,3 +1,116 @@
+body {
+	background-image: url('../images/background.jpg');
+	background-color: tan;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+}
+.wrapper {
+	margin: auto;
+	text-align: center;
+	width: 960px;
+	padding: 75px;
+	/*background-color: white;*/
+
+	height: 100%;
+}
+h1 {
+	font-size: 24px;
+	font-family: 'Didact Gothic', sans-serif;
+	font-weight: bolder;
+	padding: 0 25px 25px 25px;
+}
+h2 {
+	text-align: center;
+	color: red;
+}
 h3 {
 	font-weight: bold;
+	font-size: 18px;
+	line-height: 24px;
+	
+}
+#quiz-screen {
+	text-align: left;
+}
+#btnStart {
+	margin: 25px;
+	background-color: #4CAF50;
+	font-size: 16px;
+	color: white;
+	padding: 12px 28px;
+	width: 250px;
+	border-radius: 10px;
+	 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#btnStart:hover {
+	background-color: darkgreen;
+	cursor: pointer;
+}
+
+ul {
+padding: 15px 0 0 0;
+}
+ul li {
+padding: 5px 0 0 0;
+}
+
+#submit {
+	margin: 25px;
+	background-color: #4CAF50;
+	font-size: 16px;
+	color: white;
+	padding: 12px 28px;
+	width: 250px;
+	border-radius: 10px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	margin: 25px 25px 25px 0;
+}
+#submit:hover {
+	background-color: darkgreen;
+	cursor: pointer;
+}
+#scorecard {
+	font-size: 24px;
+	 text-decoration: underline;
+	 line-height: 40px;
+}
+
+/*input[type=radio] {
+    position: absolute;
+    opacity: 0;
+}*/
+
+/* Create a custom radio button */
+.radio {
+  /*  position: absolute;
+    top: 0;
+    left: 0;*/
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+    margin-right: 14px;
+}
+
+/* On mouse-over, add a grey background color */
+li:hover input ~ .radio {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+li input:checked ~ .radio {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radio:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+li:hover {
+	color: lightgrey;
 }

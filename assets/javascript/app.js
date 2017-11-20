@@ -38,8 +38,8 @@ var qa = [
 	}, {
 		name: "q8",
 		question: "How does Jerry check his email?",
-		choice: ["He calls his wife, who checks it for him and reads the messages aloud", "He uses AOL, which he can only access via a dial-up connection", "He goes to AltaVista and types in 'please go to Yahoo.com'", "He has literally never checked his email"],
-		answer: "He goes to AltaVista and types in “please go to Yahoo.com"
+		choice: ["He calls his wife, who checks it for him and reads the messages aloud", "He uses AOL, which he can only access via a dial-up connection", "He goes to AltaVista and types in \“please go to Yahoo.com\"", "He has literally never checked his email"],
+		answer: "He goes to AltaVista and types in \“please go to Yahoo.com\""
 	}, {
 		name: "q9",
 		question: "Which of the following is not one of Tom’s business ideas?",
@@ -48,12 +48,12 @@ var qa = [
 	}, {
 		name: "q10",
 		question: "When Ron says, 'Give me all the bacon and eggs you have,' what does he mean?",
-		choice: ["'Give me a lot of bacon and eggs.'", "'Give me enough bacon and eggs for a dozen men.'", "'Give me all the bacon and eggs you have.'", "'Give me bacon and eggs until I keel over and pass out at this table.'"],
-		answer: "Give me all the bacon and eggs you have."
+		choice: ["\"Give me a lot of bacon and eggs.\"", "\"Give me enough bacon and eggs for a dozen men.\"", "\"Give me all the bacon and eggs you have.\"", "\"Give me bacon and eggs until I keel over and pass out at this table.\""],
+		answer: "\"Give me all the bacon and eggs you have.\""
 	}];
 
 //initialize timer variable & score variables
-var timer = 10;
+var timer = 60;
 var correct = 0;
 var wrong = 0;
 var unanswered = 0;
@@ -61,6 +61,9 @@ var questionCount = 0;
 
 //declare a variable so that we can clear the setInterval function
 var intervalId;
+
+//Hide #quiz-screen by default
+$("#quiz-screen").hide();
 
 //Start button event listener
 $("#btnStart").on("click", function() {
@@ -102,6 +105,8 @@ function displayQuiz() {
 			//add a class attribute to the radio element, naming it after the question name
 			addRadio.attr("id", thisQuestion.name);
 			//prepend the radio button to the li element
+			addRadio.attr("class", "radio");
+			//prepend the radio button to the li element
 			question.prepend(addRadio);
 			//append the questions after the title
 			title.append(question);
@@ -110,13 +115,14 @@ function displayQuiz() {
 		$("#quiz").append(title);
 	};
 	//add the submit button 
-	$("#quiz").append("<input type='submit' value='Submit' id='submit'>");
+	$("#quiz").append("<input type='submit' value='Submit Answers' id='submit'>");
 };
 
 //define a start() function that will begin the timer that counts down from x seconds
 function start() {
 	intervalId = setInterval(decrement, 1000);
 	$("#starter-screen").hide();
+	$("#quiz-screen").show();
 	displayQuiz();
 };
 
@@ -141,70 +147,18 @@ function stop() {
 function calcResults() {
 	for (k = 1; k < qa.length + 1; k ++) {
 		var userGuess = $('input[name=q' + k + ']:checked').val();
-		console.log("You guessed: " + userGuess + " answer is: " + qa[k-1].answer);
+		
 		if (userGuess === qa[k-1].answer) {
-			console.log("good guess");
+			
 			correct ++; 
 		} else if (userGuess === undefined) {
 			unanswered++; 
 		} else {
-			console.log("wrong guess");
+			
 			wrong ++;
 		}
 	}
-	$("#quiz-screen").html("<h2>Times Up!</h2><h3>Correct Answers: " + correct + "</h3><h3>Wrong Answers: " + wrong + "</h3><h3>Unanswered: " + unanswered + "</h3>");
- 	console.log("Time Up!");
+	$("#quiz-screen").html("<h2>Times Up!</h2><span id='scorecard'>Scorecard</span><h3>Correct Answers: " + correct + "</h3><h3>Wrong Answers: " + wrong + "</h3><h3>Unanswered: " + unanswered + "</h3>");
+ 	
 };
 
-
-//setting up a new function that will only display one question at a time
-
-// function nextQuestion() {
-// 	console.log("you started question");
-//   // TODO: Increment the count by 1.
-//   questionCount++;
-
-//   // TODO: Use a setTimeout to run displayImage after 1 second.
-//   setTimeout(displayQuestion, 2000);
-
-//   // TODO: If the count is the same as the length of the image array, reset the count to 0.
-//   if (questionCount === qa.length) {
-//   	stop();
-//   }
-
-// }
-
-// TODO: Show the next question in the #quiz div
-// function displayQuestion() {
-// 	console.log("next question");
-// 	// var thisQuestion = qa[questionCount];
-// 	// 	//create a new ul and save it in a title variable
-// 	// 	var title = $("<ul>");
-// 	// 	//add a class to the ul
-// 	// 	title.attr("class", thisQuestion.name);
-// 	// 	//update the title ul to have a header & pose the question
-// 	// 	title.html("<h3>" + thisQuestion.question + "</h3>");
-		
-// 	// 	//present each answer
-// 	// 	for (j = 0; j < qa[0].choice.length; j++) {
-			
-// 	// 		//create a new li an save it in a question variable
-// 	// 		var question = $("<li>");
-// 	// 		//add the question to the li element
-// 	// 		question.text(thisQuestion.choice[j]);
-// 	// 		//create a radio element
-// 	// 		var addRadio = $("<input type='radio'>");
-// 	// 		//add a name attribute to the radio element, naming it after the question name
-// 	// 		addRadio.attr("name", thisQuestion.name);
-// 	// 		//add a class attribute to the radio element, naming it after the question name
-// 	// 		addRadio.attr("value", thisQuestion.choice[j]);
-// 	// 		//add a class attribute to the radio element, naming it after the question name
-// 	// 		addRadio.attr("id", thisQuestion.name);
-// 	// 		//prepend the radio button to the li element
-// 	// 		question.prepend(addRadio);
-// 	// 		//append the questions after the title
-// 	// 		title.append(question);
-		
-// 	// 	};
-// 	// 	$("#quiz").append(title);
-// }
